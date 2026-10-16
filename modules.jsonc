@@ -64,10 +64,13 @@
     }
   },
   "temperature": {
+    "interval": 2,
+    "hwmon-path-abs": "/sys/devices/platform/coretemp.0/hwmon",
+    "input-filename": "temp1_input",
     "critical-threshold": 80,
     "format": " {temperatureC}°C",
-    "tooltip-format": "Temperature: {temperatureC}°C",
-    "on-click": "foot -e s-tui"
+    "tooltip-format": "CPU: {temperatureC}°C",
+    "on-click": "foot -e btop"
   },
   "disk": {
     "interval": 30,
