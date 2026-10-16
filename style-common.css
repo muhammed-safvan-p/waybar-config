@@ -1,0 +1,391 @@
+@import url("/home/safvan/.config/hypr/colors.css");
+
+/* Unified Premium Waybar Theme - Dynamic Theme */
+
+@define-color bg_color #080505;
+@define-color bg_alt rgba(15, 10, 10, 0.65);
+@define-color text_color #fff3e0;
+@define-color subtext #ffe0b2;
+
+/* Dynamic wallpaper-based accents */
+@define-color accent_orange @color1;
+@define-color accent_amber @color2;
+@define-color accent_gold @color2;
+@define-color warning_yellow #ffeb3b;
+@define-color critical_red #ff3d00;
+
+@define-color hover_bg rgba(255, 255, 255, 0.05);
+@define-color hover_border @color1;
+@define-color hover_glow rgba(255, 255, 255, 0.1);
+
+* {
+    font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
+    font-size: 13px;
+    border: none;
+    border-radius: 0;
+}
+
+window#waybar {
+    background-color: transparent;
+    color: @text_color;
+}
+
+.modules-left,
+.modules-center,
+.modules-right {
+    background-color: rgba(8, 5, 5, 0.65);
+    border: 1px solid rgba(255, 152, 0, 0.15);
+    border-top: none;
+    border-radius: 0 0 16px 16px;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.02); */
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base Module Styling inside the sections */
+#workspaces,
+#window,
+#clock,
+#pulseaudio,
+#network,
+#bluetooth,
+#cpu,
+#memory,
+#temperature,
+#disk,
+#battery,
+#backlight,
+#privacy,
+#tray,
+#custom-power,
+#custom-lock,
+#custom-suspend,
+#custom-logout,
+#custom-reboot,
+#custom-quit {
+    background: transparent;
+    padding: 0px 10px;
+    margin: 1px 1px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    box-shadow: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effects: Accretion Disk Glow */
+#clock:hover,
+#pulseaudio:hover,
+#network:hover,
+#bluetooth:hover,
+#cpu:hover,
+#memory:hover,
+#temperature:hover,
+#disk:hover,
+#battery:hover,
+#backlight:hover,
+#privacy:hover,
+#custom-power:hover,
+#custom-lock:hover,
+#custom-suspend:hover,
+#custom-logout:hover,
+#custom-reboot:hover,
+#custom-quit:hover {
+    background: @hover_bg;
+    border: 1px solid @hover_border;
+    box-shadow: 0 4px 12px @hover_glow, inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+/* Workspaces */
+#workspaces {
+    padding: 0px 2px;
+}
+
+#workspaces button {
+    padding: 0 6px;
+    margin: 1px 0;
+    color: @subtext;
+    background: transparent;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+#workspaces button:hover {
+    background: rgba(255, 152, 0, 0.12);
+    color: @accent_gold;
+}
+
+#workspaces button.active {
+    color: #080505;
+    background: linear-gradient(45deg, @accent_orange, @accent_gold);
+    font-weight: bold;
+    /* box-shadow: 0 0 12px rgba(255, 87, 34, 0.45); */
+}
+
+#workspaces button.urgent {
+    background: @critical_red;
+    color: #ffffff;
+    box-shadow: 0 0 10px @critical_red;
+}
+
+/* Window Title */
+#window {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: @accent_gold;
+    font-weight: bold;
+}
+
+/* Clock */
+#clock {
+    color: @accent_gold;
+    font-weight: bold;
+}
+
+/* System Monitors (CPU/Memory/Disk/Temp) styled in gold base case, transitioning to orange/red like fire */
+#cpu {
+    color: @accent_gold;
+}
+
+#cpu.warning {
+    color: @accent_orange;
+}
+
+#cpu.critical {
+    background: @critical_red;
+    color: #ffffff;
+    border: 1px solid @critical_red;
+    animation-name: pulse;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#memory {
+    color: @accent_gold;
+}
+
+#memory.warning {
+    color: @accent_orange;
+}
+
+#memory.critical {
+    background: @critical_red;
+    color: #ffffff;
+    border: 1px solid @critical_red;
+    animation-name: pulse;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+#disk {
+    color: @accent_gold;
+}
+
+#temperature {
+    color: @accent_gold;
+}
+
+#temperature.critical {
+    background: @critical_red;
+    color: #ffffff;
+    border: 1px solid @critical_red;
+    animation-name: pulse;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Network & Bluetooth */
+#network {
+    color: @accent_gold;
+}
+
+#network.disconnected {
+    color: @critical_red;
+}
+
+#bluetooth {
+    color: @accent_gold;
+}
+
+#bluetooth.connected {
+    color: @accent_gold;
+}
+
+/* Audio Settings (Speakers) */
+#pulseaudio:not(.microphone) {
+    color: @critical_red;
+}
+
+#pulseaudio:not(.microphone).critical {
+    color: @accent_gold;
+}
+
+#pulseaudio:not(.microphone).muted {
+    color: @subtext;
+    background: rgba(15, 10, 10, 0.35);
+}
+
+/* Microphone Settings */
+#pulseaudio.microphone {
+    color: @accent_gold;
+}
+
+#pulseaudio.microphone.muted {
+    color: @subtext;
+    background: rgba(15, 10, 10, 0.35);
+}
+
+/* Battery Settings */
+#battery {
+    color: @accent_gold;
+}
+
+/* Backlight Settings */
+#backlight {
+    color: @accent_gold;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @accent_orange;
+}
+
+#battery.warning:not(.charging) {
+    color: @accent_orange;
+    background: rgba(255, 87, 34, 0.08);
+    border: 1px solid rgba(255, 87, 34, 0.2);
+}
+
+#battery.critical:not(.charging) {
+    background: @critical_red;
+    color: #ffffff;
+    animation-name: pulse;
+    animation-duration: 0.8s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Power Menu styling */
+#custom-power {
+    color: @critical_red;
+    font-size: 16px;
+    padding: 0;
+    min-width: 35px;
+}
+
+/* Drawer Child Modules */
+#custom-lock {
+    color: @accent_gold;
+}
+
+#custom-suspend {
+    color: @accent_amber;
+}
+
+#custom-logout {
+    color: @accent_orange;
+}
+
+#custom-reboot {
+    color: @accent_amber;
+}
+
+#custom-quit {
+    color: @critical_red;
+}
+
+#custom-lock,
+#custom-suspend,
+#custom-logout,
+#custom-reboot,
+#custom-quit {
+    font-size: 16px;
+    padding: 0 14px;
+}
+
+#custom-power:hover {
+    background: @critical_red;
+    color: #ffffff;
+    box-shadow: 0 0 15px @critical_red;
+}
+
+/* Privacy */
+#privacy {
+    color: @critical_red;
+}
+
+/* Tooltip & Calendar in Glassmorphism */
+tooltip,
+#tooltip {
+    background: rgba(10, 8, 8, 0.95);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 152, 0, 0.15);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65);
+}
+
+tooltip label,
+#tooltip label {
+    padding: 8px 12px;
+    font-family: "JetBrainsMono Nerd Font", monospace;
+    font-size: 13px;
+    color: @text_color;
+}
+
+/* Specific Calendar Styling */
+tooltip calendar,
+#tooltip calendar {
+    padding: 10px;
+    margin: 5px;
+    background: transparent;
+    border-radius: 12px;
+}
+
+tooltip calendar>header,
+#tooltip calendar>header {
+    color: @accent_orange;
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 8px;
+}
+
+tooltip calendar>highlight,
+#tooltip calendar>highlight {
+    color: #080505;
+    background-color: @accent_gold;
+    border-radius: 8px;
+}
+
+tooltip calendar>.days,
+#tooltip calendar>.days {
+    color: @subtext;
+}
+
+tooltip calendar>.today,
+#tooltip calendar>.today {
+    color: @accent_gold;
+    font-weight: bold;
+}
+
+/* System Tray */
+#tray {
+    padding: 0 6px;
+}
+
+/* Animations */
+@keyframes pulse {
+    0% {
+        background-color: rgba(255, 61, 0, 0.45);
+        box-shadow: 0 0 8px rgba(255, 61, 0, 0.35);
+    }
+
+    100% {
+        background-color: rgba(255, 61, 0, 0.85);
+        box-shadow: 0 0 18px rgba(255, 61, 0, 0.75);
+    }
+}

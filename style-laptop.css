@@ -1,0 +1,4 @@
+/* --- Laptop Monitor Bar (eDP-1) Style Overrides --- */
+#waybar.laptop-bar * {
+    font-size: 11px;
+}

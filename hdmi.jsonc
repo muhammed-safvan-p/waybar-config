@@ -1,0 +1,55 @@
+{
+  "layer": "top",
+  "position": "top",
+  "output": "HDMI-A-1",
+  "name": "hdmi-bar",
+  "start_hidden": true,
+  "height": 16,
+  "margin-top": 0,
+  "margin-left": 12,
+  "margin-right": 12,
+  "margin-bottom": 0,
+  "include": [
+    "/home/safvan/.config/waybar/modules.jsonc"
+  ],
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock",
+    "network#speed"
+  ],
+  "modules-right": [
+    "privacy",
+    "tray",
+    "cpu",
+    "memory",
+    "temperature",
+    "disk",
+    "bluetooth",
+    "network",
+    "pulseaudio#microphone",
+    "pulseaudio",
+    "battery",
+    "group/power"
+  ],
+  "tray": {
+    "spacing": 10,
+    "icon-size": 18
+  },
+  "privacy": {
+    "icon-spacing": 4,
+    "icon-size": 18,
+    "nodes": [
+      {
+        "type": "audio-in",
+        "tooltip": true
+      },
+      {
+        "type": "screenshare",
+        "tooltip": true
+      }
+    ]
+  }
+}

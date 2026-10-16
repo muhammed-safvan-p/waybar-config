@@ -1,0 +1,12 @@
+[
+  {
+    "include": [
+      "/home/safvan/.config/waybar/laptop.jsonc"
+    ]
+  },
+  {
+    "include": [
+      "/home/safvan/.config/waybar/hdmi.jsonc"
+    ]
+  }
+]

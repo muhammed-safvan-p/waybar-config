@@ -1,0 +1,5 @@
+/* Main style loader for Waybar */
+
+@import url("style-common.css");
+@import url("style-laptop.css");
+@import url("style-hdmi.css");
