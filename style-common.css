@@ -1,22 +1,23 @@
 @import url("/home/safvan/.config/hypr/colors.css");
 
-/* Unified Premium Waybar Theme - Dynamic Theme */
+/* Unified Premium Waybar Theme - Dynamic Matugen Theme */
 
-@define-color bg_color #080505;
-@define-color bg_alt rgba(15, 10, 10, 0.65);
-@define-color text_color #fff3e0;
-@define-color subtext #ffe0b2;
+@define-color bg_color alpha(@background, 0.72);
+@define-color bg_alt alpha(@background_alt, 0.82);
+@define-color text_color @foreground;
+@define-color subtext alpha(@foreground, 0.75);
 
 /* Dynamic wallpaper-based accents */
 @define-color accent_orange @color1;
 @define-color accent_amber @color2;
-@define-color accent_gold @color2;
+@define-color accent_gold @color3;
 @define-color warning_yellow #ffeb3b;
 @define-color critical_red #ff3d00;
 
-@define-color hover_bg rgba(255, 255, 255, 0.05);
+@define-color hover_bg alpha(@foreground, 0.08);
 @define-color hover_border @color1;
-@define-color hover_glow rgba(255, 255, 255, 0.1);
+@define-color hover_glow alpha(@color1, 0.25);
+@define-color bar_border alpha(@color1, 0.20);
 
 * {
     font-family: "JetBrainsMono Nerd Font", "Roboto", sans-serif;
@@ -33,11 +34,11 @@ window#waybar {
 .modules-left,
 .modules-center,
 .modules-right {
-    background-color: rgba(8, 5, 5, 0.65);
-    border: 1px solid rgba(255, 152, 0, 0.15);
+    background-color: @bg_color;
+    border: 1px solid @bar_border;
     border-top: none;
     border-radius: 0 0 16px 16px;
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.02); */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -71,7 +72,7 @@ window#waybar {
     transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Hover effects: Accretion Disk Glow */
+/* Hover effects */
 #clock:hover,
 #pulseaudio:hover,
 #network:hover,
@@ -109,15 +110,15 @@ window#waybar {
 }
 
 #workspaces button:hover {
-    background: rgba(255, 152, 0, 0.12);
+    background: alpha(@color1, 0.15);
     color: @accent_gold;
 }
 
 #workspaces button.active {
-    color: #080505;
+    color: @background;
     background: linear-gradient(45deg, @accent_orange, @accent_gold);
     font-weight: bold;
-    /* box-shadow: 0 0 12px rgba(255, 87, 34, 0.45); */
+    box-shadow: 0 0 10px alpha(@color1, 0.4);
 }
 
 #workspaces button.urgent {
@@ -141,7 +142,7 @@ window#waybar {
     font-weight: bold;
 }
 
-/* System Monitors (CPU/Memory/Disk/Temp) styled in gold base case, transitioning to orange/red like fire */
+/* System Monitors (CPU/Memory/Disk/Temp) styled in dynamic base case */
 #cpu {
     color: @accent_gold;
 }
@@ -227,7 +228,7 @@ window#waybar {
 
 #pulseaudio:not(.microphone).muted {
     color: @subtext;
-    background: rgba(15, 10, 10, 0.35);
+    background: alpha(@background_alt, 0.4);
 }
 
 /* Microphone Settings */
@@ -237,7 +238,7 @@ window#waybar {
 
 #pulseaudio.microphone.muted {
     color: @subtext;
-    background: rgba(15, 10, 10, 0.35);
+    background: alpha(@background_alt, 0.4);
 }
 
 /* Battery Settings */
@@ -257,8 +258,8 @@ window#waybar {
 
 #battery.warning:not(.charging) {
     color: @accent_orange;
-    background: rgba(255, 87, 34, 0.08);
-    border: 1px solid rgba(255, 87, 34, 0.2);
+    background: alpha(@accent_orange, 0.1);
+    border: 1px solid alpha(@accent_orange, 0.25);
 }
 
 #battery.critical:not(.charging) {
@@ -323,9 +324,9 @@ window#waybar {
 /* Tooltip & Calendar in Glassmorphism */
 tooltip,
 #tooltip {
-    background: rgba(10, 8, 8, 0.95);
+    background: alpha(@background, 0.95);
     border-radius: 12px;
-    border: 1px solid rgba(255, 152, 0, 0.15);
+    border: 1px solid @bar_border;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.65);
 }
 
@@ -356,7 +357,7 @@ tooltip calendar>header,
 
 tooltip calendar>highlight,
 #tooltip calendar>highlight {
-    color: #080505;
+    color: @background;
     background-color: @accent_gold;
     border-radius: 8px;
 }

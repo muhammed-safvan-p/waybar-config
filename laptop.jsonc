@@ -3,7 +3,7 @@
   "position": "top",
   "output": "eDP-1",
   "name": "laptop-bar",
-  "start_hidden": true,
+  "reload_style_on_change": true,
   "height": 16,
   "margin-top": 0,
   "margin-left": 12,
@@ -17,8 +17,8 @@
     "hyprland/window"
   ],
   "modules-center": [
-    "clock",
-    "network#speed"
+    "clock"
+    // "network#speed"
   ],
   "modules-right": [
     "privacy",
@@ -37,7 +37,8 @@
   ],
   "tray": {
     "spacing": 10,
-    "icon-size": 12
+    "icon-size": 12,
+    "show-passive-items": true
   },
   "privacy": {
     "icon-spacing": 4,

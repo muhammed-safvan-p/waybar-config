@@ -3,7 +3,7 @@
   "position": "top",
   "output": "HDMI-A-1",
   "name": "hdmi-bar",
-  "start_hidden": true,
+  "reload_style_on_change": true,
   "height": 16,
   "margin-top": 0,
   "margin-left": 12,
@@ -35,8 +35,9 @@
     "group/power"
   ],
   "tray": {
-    "spacing": 10,
-    "icon-size": 18
+    "spacing": 8,
+    "icon-size": 13,
+    "show-passive-items": true
   },
   "privacy": {
     "icon-spacing": 4,
